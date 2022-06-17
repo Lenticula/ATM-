@@ -21,6 +21,35 @@ Account * tail=NULL;
 
 Account *curAccount=NULL;
 
+void drawMoney()
+{
+	float money;
+	printf("请输入取款金额：\n");
+	scanf("%f",&money);
+	curAccount->money-=money;
+}
+
+void saveMoney()
+{
+	float money;
+	printf("请输入存钱的金额:\n");
+    scanf("%f",&money);
+	curAccount->money+=money;
+}
+
+void one()
+{
+	float deposit=0.0;
+    printf("\t\t\t\t\t     您的余额为：%f\n",deposit);
+	system("pause");
+	system("cls");
+}
+
+void zero()
+{
+    printf("欢迎您再次使用！\n");
+}
+
 void menu()
 {
 	int select;
@@ -53,18 +82,6 @@ void menu()
 
 }
 
-void one()
-{
-    printf("\t\t\t\t\t     您的余额为：%f\n",deposit);
-	system("pause");
-	system("cls");
-}
-
-void zero()
-{
-    printf("欢迎您再次使用！\n");
-}
-
 int finAccount(Account a)
 {
 	Account * curP=head;
@@ -72,7 +89,7 @@ int finAccount(Account a)
 	{
 		if((strcmp(curP->username,a.username)==0)&&(strcmp(curP->password,a.password)==0))
 		{
-			curAccpunt = curP;
+			curAccount = curP;
 			return 1;
 		
 		}
@@ -133,7 +150,6 @@ void sighIn()
 			  if(finAccount(a))
 			  {
                   printf("登陆成功！\n");
-				  break;
 			  }
 			  else
 			  {
@@ -158,7 +174,7 @@ int loaDate()
 			Account * newNode=(Account *) malloc(sizeof(Account));
 
 			newNode->next=NULL;
-			fscanf(fp,"%s %s\n",newNeod->username,newNode->password);
+			fscanf(fp,"%s %s\n",newNode->username,newNode->password);
 
 			if(head==NULL)
 			{
@@ -186,22 +202,6 @@ void printLinkedlist()
 	}
 }
 
-void drawMoney()
-{
-	float money;
-	printf("请输入取款金额：\n");
-	scanf("%f",&money);
-	curAccount->money-=money;
-}
-
-void saveMoney()
-{
-	float money;
-	printf("请输入存钱的金额:\n");
-    scanf("%f",&money);
-	curAccount->money+=money;
-}
-
 int main()
 {
 	int status=loaDate();
@@ -214,7 +214,6 @@ int main()
         printf("加载失败！\n");
 	}
 
-    float deposit=0.0;
 	menu();//主界面菜单
 
 	printLinkedlist();//结点
