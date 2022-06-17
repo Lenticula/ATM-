@@ -16,6 +16,50 @@ Account * tail=NULL;
 
 Account *curAccount=NULL;
 
+void menu()
+{
+	int select;
+	while(select!=0)
+	{
+		printf("\t\t\t\t\t*****欢迎使用!***** \n");
+	   	printf("\t\t\t\t\t     1.查询余额 \n");
+    	        printf("\t\t\t\t\t     2.取款\n");
+	        printf("\t\t\t\t\t     3.存款\n");
+         	printf("\t\t\t\t\t     0.退出使用\n");
+         	printf("\t\t\t\t\t     请输入您的选项：\n");
+		scanf("%d",&select);
+		system("cls");
+		if(select!=0 && select!=1 && select!=2 && select!=3)
+		{
+			printf("您输入的选项有误，请重新输入\n");
+			continue;
+		}
+		switch(select)
+		{
+	     	        case 1: one();break;
+			case 2: drawMoney();break;
+			case 3: saveMoney();break;
+		}
+	}
+	if(select==0)
+	{
+		zero();
+	}
+
+}
+
+void one()
+{
+        printf("\t\t\t\t\t     您的余额为：%f\n",deposit);
+	system("pause");
+	system("cls");
+}
+
+void zero()
+{
+    printf("欢迎您再次使用！\n");
+}
+
 int finAccount(Account a)
 {
 	Account * courP=head;
@@ -56,7 +100,7 @@ void showMenu()
 	ssystem("cls");
 	printf("修改密码请按1：\n");
 
-    updatePassword();
+        updatePassword();
 
 }
 
@@ -66,8 +110,8 @@ void sighIn()
 	printf("请输入账号：\n");
 	scanf("%s",a.username);
 
-    printf("请输入密码：\n");
-    scanf("%s",a.password);
+        printf("请输入密码：\n");
+        scanf("%s",a.password);
 
 	if(findAccount(a))
 	{
@@ -78,8 +122,18 @@ void sighIn()
 	{  
 		printf("登陆成功！\n");
         while()
-		{
-		}
+	{
+              scanf("%s",a.password);
+	      if(finAccount(a))
+	      {
+                  printf("登陆成功！\n");
+		  break;
+	      }
+	      else
+	      {
+		  count++;
+	      }
+	}
 	}
 }
 
@@ -125,8 +179,25 @@ void printLinkedlist()
 	}
 }
 
+void drawMoney()
+{
+	float money;
+	printf("请输入取款金额：\n");
+	scanf("%f",&money);
+	curAccount->money-=money;
+}
+
+void saveMoney()
+{
+	float money;
+	printf("请输入存钱的金额:\n");
+        scanf("%f",&money);
+	curAccount->money+=money;
+}
+
 int main()
 {
+        float deposit=0.0;
 	int status=loadData();
 	if(status==1)
 	{
@@ -136,12 +207,18 @@ int main()
 	{
         printf("加载失败！\n");
 	}
+        menu();//主界面菜单
 
-	printLinkedList();
+	printLinkedlist();//结点
 
-	sighIn();
+	sighIn();//登录
 
-    loaDate();
+        loaDate();//加载
+
+	drawMoney();//取钱
+
+	saveMoney();//存钱
+
 
 	return 0;
 
