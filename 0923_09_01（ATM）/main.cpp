@@ -33,14 +33,14 @@ void saveMoney()
 {
 	float money;
 	printf("请输入存钱的金额:\n");
-    scanf("%f",&money);
+        scanf("%f",&money);
 	curAccount->money+=money;
 }
 
 void one()
 {
 	float deposit=0.0;
-    printf("\t\t\t\t\t     您的余额为：%f\n",deposit);
+        printf("\t\t\t\t\t     您的余额为：%f\n",deposit);
 	system("pause");
 	system("cls");
 }
@@ -122,7 +122,7 @@ void showMenu()
 	system("cls");
 	printf("修改密码请按1：\n");
 
-    updatepassword();
+        updatepassword();
 
 }
 
@@ -132,8 +132,8 @@ void sighIn()
 	printf("请输入账号：\n");
 	scanf("%s",a.username);
 
-    printf("请输入密码：\n");
-    scanf("%s",a.password);
+        printf("请输入密码：\n");
+        scanf("%s",a.password);
 
 	if(finAccount(a))
 	{
@@ -220,7 +220,7 @@ int main()
 
 	sighIn();//登录
 
-    loaDate();//加载
+        loaDate();//加载
 
 	drawMoney();//取钱
 
